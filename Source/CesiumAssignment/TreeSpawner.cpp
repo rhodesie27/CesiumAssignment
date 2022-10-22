@@ -29,11 +29,33 @@ void ATreeSpawner::Tick(float DeltaTime)
 
 }
 
-void ATreeSpawner::createTrees(int32 numberToCreate)
+FTree ATreeSpawner::createTree()
 {
+	std::default_random_engine generator;
+	std::uniform_real_distribution<float> positionDistribution(0.0, 100000.0);
+	std::uniform_real_distribution<float> heightDistribution(2.0, 10000.0);
+	std::uniform_real_distribution<float> canopyRadiusDistribution(1.0, 5000.0);
 
+
+	FTree createdTree{
+			positionDistribution(generator),
+			positionDistribution(generator),
+			positionDistribution(generator),
+			heightDistribution(generator),
+			canopyRadiusDistribution(generator)
+	};
+	
+
+	return createdTree;
 }
 
 void ATreeSpawner::spawnTrees()
 {
+	TArray<FTree> trees;
+	
+	for (int32 i = 0; i < treesToCreate; i++)
+	{
+		FTree newTree = createTree();
+		trees.Add(newTree);
+	};
 }

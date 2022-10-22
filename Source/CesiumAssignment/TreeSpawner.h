@@ -69,7 +69,7 @@ public:
 	// Public Functions
 
 	UFUNCTION(BlueprintCallable)
-	virtual void createTrees(int32 numberToCreate);
+	FTree createTree();
 
 	UFUNCTION(BlueprintCallable, CallInEditor)
 	virtual void spawnTrees();
