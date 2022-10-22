@@ -1,5 +1,5 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
+/* Created by Austin Rhodes for Cesium Candidate Project -- 10/21/2022
+*/
 
 #include "TreeSpawner.h"
 
@@ -8,6 +8,10 @@ ATreeSpawner::ATreeSpawner()
 {
  	// Actor can be called every frame on the tick, but in this case, we do not need a tick event, so this is disabled.
 	PrimaryActorTick.bCanEverTick = false;
+
+	// Set our default values for basic testing, assuming this is a development build and not a simulated or shipping build
+	bIsShippingBuild = false;
+	treesToCreate = 10;
 
 }
 
@@ -25,3 +29,6 @@ void ATreeSpawner::Tick(float DeltaTime)
 
 }
 
+void ATreeSpawner::spawnTrees()
+{
+}
