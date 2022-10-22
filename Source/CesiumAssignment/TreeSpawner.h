@@ -6,9 +6,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "TreeSpawner.generated.h"
 #include <random>
 #include <vector>
+#include "Components/InstancedStaticMeshComponent.h"
+#include "TreeSpawner.generated.h"
+
 
 
 
@@ -36,8 +38,12 @@ UCLASS()
 class CESIUMASSIGNMENT_API ATreeSpawner : public AActor
 {
 	GENERATED_BODY()
+
+	UPROPERTY(VisibleDefaultsOnly)
+	class UInstancedStaticMeshComponent* ISMComp;
 	
 private:
+
 	
 
 public:	
