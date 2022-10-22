@@ -39,8 +39,7 @@ class CESIUMASSIGNMENT_API ATreeSpawner : public AActor
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleDefaultsOnly)
-	class UInstancedStaticMeshComponent* ISMComp;
+	
 	
 private:
 

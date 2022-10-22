@@ -2,6 +2,8 @@
 */
 
 #include "TreeSpawner.h"
+#include <time.h>
+#include <cstdlib>
 
 // Sets default values
 ATreeSpawner::ATreeSpawner()
@@ -12,6 +14,7 @@ ATreeSpawner::ATreeSpawner()
 	// Set our default values for basic testing, assuming this is a development build and not a simulated or shipping build
 	bIsShippingBuild = false;
 	treesToCreate = 10;
+	srand(time(NULL));
 
 }
 
@@ -32,19 +35,32 @@ void ATreeSpawner::Tick(float DeltaTime)
 FTree ATreeSpawner::createTree()
 {
 	// Creates the structs based on 'external data'
-
+	
+	
+	/*
+	* 
+	*  This code is not properly randomizing the numbers
 	std::default_random_engine generator;
-	std::uniform_real_distribution<float> positionDistribution(0.0, 100000.0);
-	std::uniform_real_distribution<float> heightDistribution(2.0, 10000.0);
-	std::uniform_real_distribution<float> canopyRadiusDistribution(1.0, 5000.0);
+	generator.seed();
+	std::uniform_real_distribution<float> positionDistribution(0.0, 100.0);
+	std::uniform_real_distribution<float> heightDistribution(2.0, 100.0);
+	std::uniform_real_distribution<float> canopyRadiusDistribution(1.0, 100.0);
+	*/
+
+	float coordinateX = rand() % 100000;
+	float coordinateY = rand() % 100000;
+	float coordinateZ = rand() % 100000;
+	float height = rand() % 10000 + 2.0;
+	float canopyRadius = rand() % 1000 + 1.0;
+
 
 
 	FTree createdTree{
-			positionDistribution(generator),
-			positionDistribution(generator),
-			positionDistribution(generator),
-			heightDistribution(generator),
-			canopyRadiusDistribution(generator)
+			coordinateX,
+			coordinateY,
+			coordinateZ,
+			height,
+			canopyRadius
 	};
 	
 
