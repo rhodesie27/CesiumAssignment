@@ -47,11 +47,11 @@ FTree ATreeSpawner::createTree()
 	std::uniform_real_distribution<float> canopyRadiusDistribution(1.0, 100.0);
 	*/
 
-	float coordinateX = rand() % 100000;
-	float coordinateY = rand() % 100000;
-	float coordinateZ = rand() % 100000;
-	float height = rand() % 10000 + 2.0;
-	float canopyRadius = rand() % 1000 + 1.0;
+	float coordinateX = rand() % 1000000;
+	float coordinateY = rand() % 1000000;
+	float coordinateZ = rand() % 1000000;
+	float height = rand() % 100 + 2.0;
+	float canopyRadius = rand() % 100 + 1.0;
 
 
 
