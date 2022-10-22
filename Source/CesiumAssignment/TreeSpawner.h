@@ -43,6 +43,7 @@ class CESIUMASSIGNMENT_API ATreeSpawner : public AActor
 	
 private:
 
+	bool bInitialSpawnSet;
 	
 
 public:	
@@ -79,5 +80,7 @@ public:
 	UFUNCTION(BlueprintCallable, CallInEditor)
 	virtual void spawnTrees();
 
+	UFUNCTION(BlueprintCallable)
+	virtual void spawnSingleTree(FTransform treeData);
 
 };

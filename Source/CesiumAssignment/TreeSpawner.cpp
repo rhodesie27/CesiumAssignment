@@ -13,6 +13,7 @@ ATreeSpawner::ATreeSpawner()
 
 	// Set our default values for basic testing, assuming this is a development build and not a simulated or shipping build
 	bIsShippingBuild = false;
+	bInitialSpawnSet = false;
 	treesToCreate = 10;
 	srand(time(NULL));
 
@@ -22,6 +23,12 @@ ATreeSpawner::ATreeSpawner()
 void ATreeSpawner::BeginPlay()
 {
 	Super::BeginPlay();
+
+	// If the shipping build is true, in this case meaning we are simulated that the application has been loaded with data, then we will spawn trees on instance launch -- BeginPlay
+	if (bIsShippingBuild == true)
+	{
+		spawnTrees();
+	}
 	
 }
 
@@ -39,7 +46,9 @@ FTree ATreeSpawner::createTree()
 	
 	/*
 	* 
-	*  This code is not properly randomizing the numbers
+	*  This code is not properly randomizing the numbers so I have rebuild a randomizer code using time and the standard library functions below
+	*  The true application would assume that this function would draw upon the externally given data to create the tree structs
+	* 
 	std::default_random_engine generator;
 	generator.seed();
 	std::uniform_real_distribution<float> positionDistribution(0.0, 100.0);
@@ -101,4 +110,34 @@ void ATreeSpawner::spawnTrees()
 		this->AddInstanceComponent(ISMComp);
 		ISMComp->AddInstance(treeTransform);
 	};
+
+	if (treesToCreate > 0)
+		bInitialSpawnSet = true;
+	else
+		bInitialSpawnSet = false;
+}
+
+void ATreeSpawner::spawnSingleTree(FTransform treeData)
+{
+	// This function is to allow the user to place trees individually at the desired location
+
+	if (bInitialSpawnSet == true || treesToCreate == 0)
+	{
+		// Creates Tree Structs
+		FTree newTree = createTree();
+
+
+		// Creates the static mesh component in instances for the Tree
+		UInstancedStaticMeshComponent* ISMComp = NewObject<UInstancedStaticMeshComponent>(this);
+		ISMComp->RegisterComponent();
+		ISMComp->SetStaticMesh(treeMesh);
+		ISMComp->SetFlags(RF_Transactional);
+		this->AddInstanceComponent(ISMComp);
+		ISMComp->AddInstance(treeData);
+	}
+	else
+	{
+		spawnTrees();
+	}
+
 }
