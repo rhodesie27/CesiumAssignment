@@ -29,6 +29,11 @@ void ATreeSpawner::Tick(float DeltaTime)
 
 }
 
+void ATreeSpawner::createTrees(int32 numberToCreate)
+{
+
+}
+
 void ATreeSpawner::spawnTrees()
 {
 }
